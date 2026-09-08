@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -9,13 +9,13 @@ import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
 
 
-public class Verify_Bundle_Provisioned extends Action
+public class VerifyBundleProvisioned extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Verify_Bundle_Provisioned instance = new Verify_Bundle_Provisioned();
+	public static final VerifyBundleProvisioned instance = new VerifyBundleProvisioned();
 
-	private Verify_Bundle_Provisioned()
+	private VerifyBundleProvisioned()
 	{
 		super();
 	}

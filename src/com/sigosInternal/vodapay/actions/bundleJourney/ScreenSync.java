@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.device.Device;
@@ -12,7 +12,7 @@ import com.mc.api.script.IScriptContext;
  * waiting out a fast load, or (worse, and harder to notice until a run fails
  * intermittently) moves on to the next step before a slow one has actually
  * rendered. This generalizes the poll loop already proven live in
- * Verify_Bundle_Provisioned/Verify_Sms_Received into one shared helper so
+ * VerifyBundleProvisioned/VerifySmsReceived into one shared helper so
  * every navigation step in the journey gets the same smart wait instead of
  * a guessed sleep duration.
  *

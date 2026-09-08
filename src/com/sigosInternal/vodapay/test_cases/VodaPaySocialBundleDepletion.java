@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.test_cases;
+package com.sigosInternal.vodapay.test_cases;
 
 
 import com.mc.api.action.Action;
@@ -13,18 +13,18 @@ import com.mc.api.script.exception.ScriptFailureException;
 import com.mc.api.script.result.ScriptResult;
 import com.mc.api.testcase.TestCase;
 import com.mc.api.testcase.helper.TestCaseHelper;
-import com.sigos_internal.vodapay.BundleComposition;
+import com.sigosInternal.vodapay.BundleComposition;
 
 import java.util.Map;
 
 
-public class VodaPay_Social_Bundle_Depletion extends TestCase
+public class VodaPaySocialBundleDepletion extends TestCase
 {
   /*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-  public static final VodaPay_Social_Bundle_Depletion instance = new VodaPay_Social_Bundle_Depletion();
+  public static final VodaPaySocialBundleDepletion instance = new VodaPaySocialBundleDepletion();
 
-  private VodaPay_Social_Bundle_Depletion()
+  private VodaPaySocialBundleDepletion()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class VodaPay_Social_Bundle_Depletion extends TestCase
    */
   public static void main(String[] args) throws ScriptFailureException, InterruptedException
   {
-    TestCase testCase = VodaPay_Social_Bundle_Depletion.instance;
+    TestCase testCase = VodaPaySocialBundleDepletion.instance;
 
     // create our execution helper
     TestCaseHelper helper = getHelperFromArgs(args);
@@ -132,7 +132,7 @@ public class VodaPay_Social_Bundle_Depletion extends TestCase
     //                              another test line to call, so cost/traffic stays internal
     //   videoUrl, watchSeconds  -- data-depletion step: a direct video link opened via
     //                              Device.OpenBrowser (confirmed real API), played for
-    //                              watchSeconds -- see Play_Youtube_Video's own class doc
+    //                              watchSeconds -- see PlayYouTubeVideo's own class doc
     //   deviceCandidates        -- optional, comma-separated mcd ids, e.g. "25011,25012" --
     //                              both real devices in this Vodacom SX implementation
     //                              (SAMSUNG_ANDRD_GALAXY_S23: "left"/"right"), confirmed via
@@ -340,18 +340,18 @@ public class VodaPay_Social_Bundle_Depletion extends TestCase
     final BundleComposition composition = BundleComposition.parse(bundleName == null ? "" : bundleName);
     System.out.println("Parsed " + bundleName + " -> " + composition);
 
-    Action installVodaPay = Action.get("com.sigos_internal.vodapay.actions.Application_Management.Install_VodaPay_App");
-    Action launchVodaPay = Action.get("com.sigos_internal.vodapay.actions.Application_Management.Launch_VodaPay");
-    Action checkOrCreateProfile = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_Or_Create_VodaPay_Profile");
-    Action checkWalletBalance = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_Wallet_Balance");
-    Action checkDetailedBalanceRow = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_Detailed_Balance_Row");
-    Action purchaseBundle = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Purchase_Social_Bundle");
-    Action verifyProvisioned = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Verify_Bundle_Provisioned");
-    Action verifySms = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Verify_Sms_Received");
-    Action launchYouTube = Action.get("com.sigos_internal.vodapay.actions.Application_Management.Launch_YouTube");
-    Action playVideo = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Play_Youtube_Video");
-    Action depleteVoiceMinutes = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Deplete_Voice_Minutes");
-    Action verifyDepleted = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Verify_Bundle_Depleted");
+    Action installVodaPay = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.InstallVodaPayApp");
+    Action launchVodaPay = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.LaunchVodaPay");
+    Action checkOrCreateProfile = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckOrCreateVodaPayProfile");
+    Action checkWalletBalance = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckWalletBalance");
+    Action checkDetailedBalanceRow = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckDetailedBalanceRow");
+    Action purchaseBundle = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.PurchaseSocialBundle");
+    Action verifyProvisioned = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.VerifyBundleProvisioned");
+    Action verifySms = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.VerifySmsReceived");
+    Action launchYouTube = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.LaunchYouTube");
+    Action playVideo = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.PlayYouTubeVideo");
+    Action depleteVoiceMinutes = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.DepleteVoiceMinutes");
+    Action verifyDepleted = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.VerifyBundleDepleted");
 
     // Only actually installs when the app isn't already on the device -- skip this
     // action in Studio (or leave it unregistered) once devices are pre-provisioned,
@@ -368,8 +368,8 @@ public class VodaPay_Social_Bundle_Depletion extends TestCase
     // Balance before/after the purchase -- lets a test confirm the wallet actually
     // moved by the bundle's price, not just that the purchase screen said success.
     // Also independently useful: a "just check the balance, don't buy anything"
-    // scenario can run Check_Wallet_Balance alone without ever calling
-    // Purchase_Social_Bundle.
+    // scenario can run CheckWalletBalance alone without ever calling
+    // PurchaseSocialBundle.
     String balanceBefore = null;
     if (checkWalletBalance != null)
     {
@@ -383,7 +383,7 @@ public class VodaPay_Social_Bundle_Depletion extends TestCase
     // newly bought bundle's row name in "Detailed balances" isn't guaranteed to
     // exactly match its shop tile name (per the user), the reliable way to
     // identify the new bundle is diffing before/after row lists rather than
-    // assuming a name -- see Check_Detailed_Balance_Row's context.get
+    // assuming a name -- see CheckDetailedBalanceRow's context.get
     // ("detailedBalanceRows_<category>") for the before/after strings.
     String detailedCategory = composition.hasData() ? "Data" : composition.hasVoiceMinutes() ? "Voice" : composition.hasSms() ? "SMS" : null;
     String detailedRowsBefore = null;
@@ -462,7 +462,7 @@ public class VodaPay_Social_Bundle_Depletion extends TestCase
 
   /**
    * Compares two semicolon-joined "name=value" row strings from
-   * Check_Detailed_Balance_Row and returns the row(s) present in "after" but not
+   * CheckDetailedBalanceRow and returns the row(s) present in "after" but not
    * in "before" -- i.e. whatever bundle the purchase actually added, without
    * needing to already know its exact Detailed-balances row name (which isn't
    * guaranteed to match the shop tile's name).

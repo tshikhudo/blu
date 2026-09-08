@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 /**
  * Reads "Your wallet balance" off the VodaPay Home screen. Standalone-usable (some
  * test scenarios just check the balance and never buy anything), and also meant to
- * be called both before and after Purchase_Social_Bundle to confirm the balance
+ * be called both before and after PurchaseSocialBundle to confirm the balance
  * actually moved by the right amount, not just that the purchase screen said
  * success.
  *
@@ -22,13 +22,13 @@ import java.util.regex.Pattern;
  * bottom nav bar, but the wallet balance card itself is WebView content (no
  * resource-id), so this reads it the same text-search way as the shop screens.
  */
-public class Check_Wallet_Balance extends Action
+public class CheckWalletBalance extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Check_Wallet_Balance instance = new Check_Wallet_Balance();
+	public static final CheckWalletBalance instance = new CheckWalletBalance();
 
-	private Check_Wallet_Balance()
+	private CheckWalletBalance()
 	{
 		super();
 	}

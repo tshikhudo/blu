@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -32,13 +32,13 @@ import java.util.regex.Pattern;
  * dedicated "read SMS" scripting API in this SDK, so this reads it the same way a
  * person would.
  */
-public class Check_Or_Create_VodaPay_Profile extends Action
+public class CheckOrCreateVodaPayProfile extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Check_Or_Create_VodaPay_Profile instance = new Check_Or_Create_VodaPay_Profile();
+	public static final CheckOrCreateVodaPayProfile instance = new CheckOrCreateVodaPayProfile();
 
-	private Check_Or_Create_VodaPay_Profile()
+	private CheckOrCreateVodaPayProfile()
 	{
 		super();
 	}
@@ -251,7 +251,7 @@ public class Check_Or_Create_VodaPay_Profile extends Action
 
 		// TODO: the avatar icon has no text/content-desc (same accessibility gap as
 		// the network provider logos) -- this taps the first ImageView near the top
-		// of Home as a best guess. Confirm with Spy_Current_Screen if this proves
+		// of Home as a best guess. Confirm with SpyCurrentScreen if this proves
 		// unreliable on other devices.
 		ObjectTree[] avatarCandidates = api.findObjectsByClassName("android.widget.ImageView");
 		if (avatarCandidates.length == 0)
@@ -298,7 +298,7 @@ public class Check_Or_Create_VodaPay_Profile extends Action
 	 * TODO: this assumes the field is discoverable via the standard
 	 * "android.widget.EditText" class name. Unconfirmed against the real BLU
 	 * agent (this was only checked via raw adb on a personal phone, not through
-	 * BLU itself) -- if this fails on a real run, use Spy_Current_Screen to find
+	 * BLU itself) -- if this fails on a real run, use SpyCurrentScreen to find
 	 * the field's actual class name and add it to the candidates below.
 	 */
 	private boolean enterPinNear(Device device, ObjectLevelApi api, String anchorLabel, String pin) throws Exception

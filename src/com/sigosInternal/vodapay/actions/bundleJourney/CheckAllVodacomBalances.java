@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -24,13 +24,13 @@ import java.util.regex.Pattern;
  * then remaining; this takes the last one), Anytime voice, Anytime sms. "View all
  * balances" needs tapping first or some of these stay collapsed/hidden.
  */
-public class Check_All_Vodacom_Balances extends Action
+public class CheckAllVodacomBalances extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Check_All_Vodacom_Balances instance = new Check_All_Vodacom_Balances();
+	public static final CheckAllVodacomBalances instance = new CheckAllVodacomBalances();
 
-	private Check_All_Vodacom_Balances()
+	private CheckAllVodacomBalances()
 	{
 		super();
 	}
@@ -63,7 +63,7 @@ public class Check_All_Vodacom_Balances extends Action
 	// labels and both values -- if the latter, "last match wins" (used for
 	// every other label here) would silently return "Amount you owe"'s value
 	// for "Bill so far" too. Add real Billing extraction only once that's
-	// confirmed with Spy_Current_Screen/uiautomator, rather than guess.
+	// confirmed with SpyCurrentScreen/uiautomator, rather than guess.
 	private static final long SCREEN_TRANSITION_TIMEOUT_MS = 15000;
 
 	@Override
@@ -123,7 +123,7 @@ public class Check_All_Vodacom_Balances extends Action
 		}
 
 		if (found == 0)
-			return fail("My Vodacom loaded but no known balance cards were found -- labels may have changed (this account is postpaid; a prepaid/hybrid account may show a different set), check with Spy_Current_Screen");
+			return fail("My Vodacom loaded but no known balance cards were found -- labels may have changed (this account is postpaid; a prepaid/hybrid account may show a different set), check with SpyCurrentScreen");
 
 		// TODO: tapping a balance card opens a detailed breakdown screen (confirmed
 		// by the user, not yet explored live) -- not implemented here; add a

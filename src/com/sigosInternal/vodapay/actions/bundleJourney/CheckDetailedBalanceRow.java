@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -28,13 +28,13 @@ import java.awt.Point;
  * rows), then a value and the literal word "left" -- all as separate WebView text
  * nodes, not one combined string like the summary cards use.
  */
-public class Check_Detailed_Balance_Row extends Action
+public class CheckDetailedBalanceRow extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Check_Detailed_Balance_Row instance = new Check_Detailed_Balance_Row();
+	public static final CheckDetailedBalanceRow instance = new CheckDetailedBalanceRow();
 
-	private Check_Detailed_Balance_Row()
+	private CheckDetailedBalanceRow()
 	{
 		super();
 	}

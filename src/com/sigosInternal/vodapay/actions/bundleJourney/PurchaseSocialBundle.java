@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -7,7 +7,7 @@ import com.mc.api.device.ObjectLevelApi;
 import com.mc.api.device.ObjectTree;
 import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
-import com.sigos_internal.vodapay.BundleComposition;
+import com.sigosInternal.vodapay.BundleComposition;
 
 import java.awt.Point;
 
@@ -26,7 +26,7 @@ import java.awt.Point;
  * real successful purchase, so it's the one a "final" buy-journey test should
  * use. See [[project-vodapay-bundle-testing]] in memory for the full write-up.
  *
- * Real flow (Home screen already showing, i.e. Launch_VodaPay/login already ran):
+ * Real flow (Home screen already showing, i.e. LaunchVodaPay/login already ran):
  *   Home -> "Buy" quick action (sits under the "My Vodacom balances" card,
  *     alongside "My account"/"View all", NOT the same as the "Airtime &
  *     bundles" tile) -> [one-time per account] "For added security, you may
@@ -58,13 +58,13 @@ import java.awt.Point;
  *    bought through this action yet. composition.hasSms() without hasData()/
  *    hasVoiceMinutes() also FAILS clearly rather than guessing a tab name.
  */
-public class Purchase_Social_Bundle extends Action
+public class PurchaseSocialBundle extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Purchase_Social_Bundle instance = new Purchase_Social_Bundle();
+	public static final PurchaseSocialBundle instance = new PurchaseSocialBundle();
 
-	private Purchase_Social_Bundle()
+	private PurchaseSocialBundle()
 	{
 		super();
 	}

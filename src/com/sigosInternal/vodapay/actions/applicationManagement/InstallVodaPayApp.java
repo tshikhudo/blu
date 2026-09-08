@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Application_Management;
+package com.sigosInternal.vodapay.actions.applicationManagement;
 
 
 import com.mc.api.action.Action;
@@ -8,13 +8,13 @@ import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
 
 
-public class Install_VodaPay_App extends Action
+public class InstallVodaPayApp extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Install_VodaPay_App instance = new Install_VodaPay_App();
+	public static final InstallVodaPayApp instance = new InstallVodaPayApp();
 
-	private Install_VodaPay_App()
+	private InstallVodaPayApp()
 	{
 		super();
 	}

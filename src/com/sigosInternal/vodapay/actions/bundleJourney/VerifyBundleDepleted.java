@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -10,13 +10,13 @@ import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
 
 
-public class Verify_Bundle_Depleted extends Action
+public class VerifyBundleDepleted extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Verify_Bundle_Depleted instance = new Verify_Bundle_Depleted();
+	public static final VerifyBundleDepleted instance = new VerifyBundleDepleted();
 
-	private Verify_Bundle_Depleted()
+	private VerifyBundleDepleted()
 	{
 		super();
 	}
@@ -41,7 +41,7 @@ public class Verify_Bundle_Depleted extends Action
 		device.serverWait(getCurrentContext(), 2000);
 
 		ObjectLevelApi api = device.getObjectLevelApi();
-		api.experimental.startApplication("za.co.vodacom.vodapay"); // PLACEHOLDER -- keep in sync with Launch_VodaPay
+		api.experimental.startApplication("za.co.vodacom.vodapay"); // PLACEHOLDER -- keep in sync with LaunchVodaPay
 		device.serverWait(getCurrentContext(), 3000);
 
 		ObjectTree[] nav = api.findObjectsByText(MY_BUNDLES_NAV_LABEL);

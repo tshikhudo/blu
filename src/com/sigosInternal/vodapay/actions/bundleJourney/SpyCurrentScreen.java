@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -18,17 +18,17 @@ import java.io.File;
  * screen's object tree (element text/class/position) to the Script output console
  * and saves a screenshot to disk, so the real VodaPay/YouTube element names and
  * labels can be captured and relayed back for filling in the PLACEHOLDER values in
- * Purchase_Social_Bundle, Verify_Bundle_Provisioned, Verify_Bundle_Depleted, and
- * Play_Youtube_Video. Run this with the device sitting on whichever screen needs
+ * PurchaseSocialBundle, VerifyBundleProvisioned, VerifyBundleDepleted, and
+ * PlayYouTubeVideo. Run this with the device sitting on whichever screen needs
  * to be inspected, then copy the printed XML (or send the saved PNG) back.
  */
-public class Spy_Current_Screen extends Action
+public class SpyCurrentScreen extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Spy_Current_Screen instance = new Spy_Current_Screen();
+	public static final SpyCurrentScreen instance = new SpyCurrentScreen();
 
-	private Spy_Current_Screen()
+	private SpyCurrentScreen()
 	{
 		super();
 	}
@@ -48,7 +48,7 @@ public class Spy_Current_Screen extends Action
 		ObjectLevelApi api = device.getObjectLevelApi();
 		ObjectTree root = api.getCurrentScreen();
 
-		System.out.println("=== Spy_Current_Screen [" + label + "] object tree ===");
+		System.out.println("=== SpyCurrentScreen [" + label + "] object tree ===");
 		System.out.println(root.toXmlString());
 		System.out.println("=== end object tree ===");
 

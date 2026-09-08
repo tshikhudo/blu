@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -25,15 +25,15 @@ import java.awt.Point;
  * expected digit in the number display) -- so this uses device.sendTouchClick(Point)
  * against each digit TextView's bounds instead of click(). If a different test
  * device has a normal EditText-based dialer, findObjectsByClassName + enterText
- * would be simpler and should be tried first via Spy_Current_Screen.
+ * would be simpler and should be tried first via SpyCurrentScreen.
  */
-public class Deplete_Voice_Minutes extends Action
+public class DepleteVoiceMinutes extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Deplete_Voice_Minutes instance = new Deplete_Voice_Minutes();
+	public static final DepleteVoiceMinutes instance = new DepleteVoiceMinutes();
 
-	private Deplete_Voice_Minutes()
+	private DepleteVoiceMinutes()
 	{
 		super();
 	}
@@ -46,7 +46,7 @@ public class Deplete_Voice_Minutes extends Action
 	private static final String DIALER_APP_PACKAGE = "com.huawei.contacts";
 	// TODO: still PLACEHOLDER -- have not actually placed a call yet (needs a real
 	// callDestinationNumber and a go-ahead first, since it has a real cost/side
-	// effect). Confirm the in-call screen's end-call control with Spy_Current_Screen
+	// effect). Confirm the in-call screen's end-call control with SpyCurrentScreen
 	// once that's authorized.
 	private static final String END_CALL_BUTTON_LABEL = "End call"; // PLACEHOLDER -- verify
 	private static final long CALL_CONNECT_WAIT_MS = 10000;

@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -40,13 +40,13 @@ import com.mc.api.script.ScriptReturn;
  * this SDK yet (HardwareHelper's RFSwitchHelper/DataCableHelper look like the
  * likeliest candidates -- not yet investigated).
  */
-public class Play_Youtube_Video extends Action
+public class PlayYouTubeVideo extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Play_Youtube_Video instance = new Play_Youtube_Video();
+	public static final PlayYouTubeVideo instance = new PlayYouTubeVideo();
 
-	private Play_Youtube_Video()
+	private PlayYouTubeVideo()
 	{
 		super();
 	}

@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 
 import com.mc.api.action.Action;
@@ -16,13 +16,13 @@ import com.mc.api.script.ScriptReturn;
  * and when it's called differs, so one action covers both instead of two
  * near-duplicates.
  */
-public class Verify_Sms_Received extends Action
+public class VerifySmsReceived extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Verify_Sms_Received instance = new Verify_Sms_Received();
+	public static final VerifySmsReceived instance = new VerifySmsReceived();
 
-	private Verify_Sms_Received()
+	private VerifySmsReceived()
 	{
 		super();
 	}

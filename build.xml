@@ -2,7 +2,7 @@
     <property environment="env"/>
 
     <property name="project.full_name" value=""/>
-    <property name="project.content" value="com/sigos_internal/vodapay"/>        
+    <property name="project.content" value="com/sigosInternal/vodapay"/>
 
     <target name="clean">
         <delete dir="bin" failonerror="false"/>

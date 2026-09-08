@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 import com.mc.api.device.Device;
 import com.mc.api.device.ObjectLevelApi;

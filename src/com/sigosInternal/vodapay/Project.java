@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay;
+package com.sigosInternal.vodapay;
 
 import com.mc.api.project.ProjectInterpreter;
 

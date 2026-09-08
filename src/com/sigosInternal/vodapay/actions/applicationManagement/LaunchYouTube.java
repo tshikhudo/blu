@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Application_Management;
+package com.sigosInternal.vodapay.actions.applicationManagement;
 
 
 import com.mc.api.action.Action;
@@ -8,13 +8,13 @@ import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
 
 
-public class Launch_YouTube extends Action
+public class LaunchYouTube extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Launch_YouTube instance = new Launch_YouTube();
+	public static final LaunchYouTube instance = new LaunchYouTube();
 
-	private Launch_YouTube()
+	private LaunchYouTube()
 	{
 		super();
 	}

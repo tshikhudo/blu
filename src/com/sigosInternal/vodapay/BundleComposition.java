@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay;
+package com.sigosInternal.vodapay;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

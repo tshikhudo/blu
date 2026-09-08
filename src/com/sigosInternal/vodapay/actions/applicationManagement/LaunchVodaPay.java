@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Application_Management;
+package com.sigosInternal.vodapay.actions.applicationManagement;
 
 
 import com.mc.api.action.Action;
@@ -6,16 +6,16 @@ import com.mc.api.device.Device;
 import com.mc.api.device.ObjectLevelApi;
 import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
-import com.sigos_internal.vodapay.actions.Bundle_Journey.ScreenSync;
+import com.sigosInternal.vodapay.actions.bundleJourney.ScreenSync;
 
 
-public class Launch_VodaPay extends Action
+public class LaunchVodaPay extends Action
 {
 	/*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-	public static final Launch_VodaPay instance = new Launch_VodaPay();
+	public static final LaunchVodaPay instance = new LaunchVodaPay();
 
-	private Launch_VodaPay()
+	private LaunchVodaPay()
 	{
 		super();
 	}

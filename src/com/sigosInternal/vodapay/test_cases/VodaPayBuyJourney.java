@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.test_cases;
+package com.sigosInternal.vodapay.test_cases;
 
 
 import com.mc.api.action.Action;
@@ -13,7 +13,7 @@ import com.mc.api.script.exception.ScriptFailureException;
 import com.mc.api.script.result.ScriptResult;
 import com.mc.api.testcase.TestCase;
 import com.mc.api.testcase.helper.TestCaseHelper;
-import com.sigos_internal.vodapay.BundleComposition;
+import com.sigosInternal.vodapay.BundleComposition;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,15 +25,15 @@ import java.util.Set;
 /**
  * The final, narrowly-scoped buy-journey test case: register-or-login, read
  * balances before, buy (if a bundle is given), read balances after. This is
- * deliberately smaller than {@link VodaPay_Social_Bundle_Depletion} -- it
+ * deliberately smaller than {@link VodaPaySocialBundleDepletion} -- it
  * stops at provisioning confirmation and does not attempt bundle DEPLETION
  * (YouTube streaming, voice calls, SMS sending). That scope split is
  * deliberate: every action this test case calls has been confirmed working
  * end-to-end live on a real device (see [[project-vodapay-bundle-testing]] in
  * memory), including a real completed purchase with its provisioning
  * independently verified via a before/after balance-row diff. The broader
- * depletion pipeline in VodaPay_Social_Bundle_Depletion still depends on
- * pieces that are known-stale (Verify_Bundle_Provisioned/Verify_Bundle_Depleted
+ * depletion pipeline in VodaPaySocialBundleDepletion still depends on
+ * pieces that are known-stale (VerifyBundleProvisioned/VerifyBundleDepleted
  * still search for a "My Bundles" nav item that was never confirmed to be
  * real) or entirely unimplemented (SMS depletion) -- this test case exists so
  * there's ONE thing that's genuinely ready to run as-is, rather than only
@@ -46,13 +46,13 @@ import java.util.Set;
  * real, separately-useful scenario the user asked for earlier in this
  * project), rather than being treated as an error.
  */
-public class VodaPay_Buy_Journey extends TestCase
+public class VodaPayBuyJourney extends TestCase
 {
   /*** GENERATED CODE -- DO NOT MODIFY (ANY CHANGES WILL BE OVERWRITTEN) ***/
 
-  public static final VodaPay_Buy_Journey instance = new VodaPay_Buy_Journey();
+  public static final VodaPayBuyJourney instance = new VodaPayBuyJourney();
 
-  private VodaPay_Buy_Journey()
+  private VodaPayBuyJourney()
   {
     super();
   }
@@ -63,7 +63,7 @@ public class VodaPay_Buy_Journey extends TestCase
    */
   public static void main(String[] args) throws ScriptFailureException, InterruptedException
   {
-    TestCase testCase = VodaPay_Buy_Journey.instance;
+    TestCase testCase = VodaPayBuyJourney.instance;
 
     // create our execution helper
     TestCaseHelper helper = getHelperFromArgs(args);
@@ -103,7 +103,7 @@ public class VodaPay_Buy_Journey extends TestCase
 
   /*** END GENERATED CODE ***/
 
-  // See VodaPay_Social_Bundle_Depletion for the full write-up of why this SIM
+  // See VodaPaySocialBundleDepletion for the full write-up of why this SIM
   // multiplexer mechanism is safe to drive from a Java loop (confirmed by
   // decompiling scripting-api.jar, not just reading method signatures).
   private static final int MIN_SIM_CARD_POSITION = 1;
@@ -114,7 +114,7 @@ public class VodaPay_Buy_Journey extends TestCase
   @Override
   protected ScriptReturn execute(Device device, IScriptContext context) throws ScriptFailureException, InterruptedException, DeviceExecutionException
   {
-    // Parameters (see also VodaPay_Social_Bundle_Depletion, which shares the
+    // Parameters (see also VodaPaySocialBundleDepletion, which shares the
     // same project.xml and most of these):
     //   cellNumbers, bundleNames -- semicolon-separated, paired by position,
     //                              e.g. cellNumbers = "0662401991;0743011101"
@@ -181,7 +181,7 @@ public class VodaPay_Buy_Journey extends TestCase
     }
   }
 
-  /** See VodaPay_Social_Bundle_Depletion.selectAvailableDevice -- identical logic, kept independent rather than shared to avoid coupling the two test cases together. */
+  /** See VodaPaySocialBundleDepletion.selectAvailableDevice -- identical logic, kept independent rather than shared to avoid coupling the two test cases together. */
   private Device selectAvailableDevice(Device fallbackDevice, String candidateMcdList) throws ScriptFailureException
   {
     if (candidateMcdList == null || candidateMcdList.trim().isEmpty())
@@ -301,7 +301,7 @@ public class VodaPay_Buy_Journey extends TestCase
   /**
    * The actual per-number journey: register-or-login, balances before, buy
    * (if bundleName is non-blank), balances after. Uses the same
-   * detailed-balance-row diffing as VodaPay_Social_Bundle_Depletion to
+   * detailed-balance-row diffing as VodaPaySocialBundleDepletion to
    * identify a newly-provisioned bundle without needing its exact
    * Detailed-balances row name to be known in advance.
    */
@@ -312,12 +312,12 @@ public class VodaPay_Buy_Journey extends TestCase
     final boolean buying = bundleName != null && !bundleName.trim().isEmpty();
     final BundleComposition composition = buying ? BundleComposition.parse(bundleName) : null;
 
-    Action launchVodaPay = Action.get("com.sigos_internal.vodapay.actions.Application_Management.Launch_VodaPay");
-    Action checkOrCreateProfile = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_Or_Create_VodaPay_Profile");
-    Action checkWalletBalance = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_Wallet_Balance");
-    Action checkAllBalances = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_All_Vodacom_Balances");
-    Action checkDetailedBalanceRow = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Check_Detailed_Balance_Row");
-    Action purchaseBundle = Action.get("com.sigos_internal.vodapay.actions.Bundle_Journey.Purchase_Social_Bundle");
+    Action launchVodaPay = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.LaunchVodaPay");
+    Action checkOrCreateProfile = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckOrCreateVodaPayProfile");
+    Action checkWalletBalance = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckWalletBalance");
+    Action checkAllBalances = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckAllVodacomBalances");
+    Action checkDetailedBalanceRow = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckDetailedBalanceRow");
+    Action purchaseBundle = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.PurchaseSocialBundle");
 
     if (launchVodaPay != null)
       device.execute(launchVodaPay);
@@ -358,7 +358,7 @@ public class VodaPay_Buy_Journey extends TestCase
     }
 
     if (purchaseBundle == null)
-      throw new ScriptFailureException(getCurrentContext(), "Purchase_Social_Bundle action not found");
+      throw new ScriptFailureException(getCurrentContext(), "PurchaseSocialBundle action not found");
     device.execute(purchaseBundle);
     System.out.println(cellNumber + ": purchased " + bundleName + " (order " + context.get("purchaseOrderNumber") + ")");
 
@@ -388,8 +388,8 @@ public class VodaPay_Buy_Journey extends TestCase
 
   /**
    * Compares two semicolon-joined "name=value" row strings from
-   * Check_Detailed_Balance_Row and returns the row(s) present in "after" but
-   * not in "before" -- see VodaPay_Social_Bundle_Depletion for the original
+   * CheckDetailedBalanceRow and returns the row(s) present in "after" but
+   * not in "before" -- see VodaPaySocialBundleDepletion for the original
    * write-up of why diffing beats assuming a row name.
    */
   private String diffNewRows(String before, String after)

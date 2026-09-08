@@ -1,4 +1,4 @@
-package com.sigos_internal.vodapay.actions.Bundle_Journey;
+package com.sigosInternal.vodapay.actions.bundleJourney;
 
 import com.mc.api.device.Device;
 import com.mc.api.device.ObjectLevelApi;
@@ -9,8 +9,8 @@ import com.mc.api.script.IScriptContext;
  * There is no dedicated "read SMS" scripting API in this SDK (checked
  * scripting-api.jar for anything under that name -- nothing), so this reads it
  * the same way a person would: open Messages and inspect the screen text. Used by
- * both OTP extraction (Check_Or_Create_VodaPay_Profile) and product SMS
- * verification (Verify_Sms_Received), so the native-app quirks only need fixing
+ * both OTP extraction (CheckOrCreateVodaPayProfile) and product SMS
+ * verification (VerifySmsReceived), so the native-app quirks only need fixing
  * in one place once real device access confirms them.
  */
 final class SmsReader

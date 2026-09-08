@@ -1,8 +1,8 @@
 <root>
 	<project>
-		<id>57</id>
+		<id>66</id>
 		<customer_name>SIGOS_INTERNAL</customer_name>
-		<content>com/sigos_internal/vodapay</content>
+		<content>com/sigosInternal/vodapay</content>
 		<error_categories>
 		</error_categories>
 		<error_codes>
@@ -26,20 +26,20 @@
 		<cleanup>
 		</cleanup>
 		<parameters>
-			<parameter name="Project57.mustLogin">
+			<parameter name="Project66.mustLogin">
 				<type>String</type>
 				<default></default>
 			</parameter>
 			<!-- TODO: added by hand, schema copied from the one entry above (already
 			     confirmed present), NOT verified in Studio itself. If these don't show
-			     up as fillable fields when scheduling VodaPay_Social_Bundle_Depletion
+			     up as fillable fields when scheduling VodaPaySocialBundleDepletion
 			     from the SITE Web UI, this is the wrong mechanism and the real one
 			     needs checking in Studio's Properties/Parameters screen instead. -->
-			<parameter name="Project57.cellNumber">
+			<parameter name="Project66.cellNumber">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.bundleName">
+			<parameter name="Project66.bundleName">
 				<type>String</type>
 				<default></default>
 			</parameter>
@@ -48,44 +48,44 @@
 			     semicolon-separated and paired by position (cellNumbers[i] buys
 			     bundleNames[i], both lists must be the same length). These take
 			     priority over the singular cellNumber/bundleName above when set,
-			     see VodaPay_Social_Bundle_Depletion.runJourneyForAllPairs. -->
-			<parameter name="Project57.cellNumbers">
+			     see VodaPaySocialBundleDepletion.runJourneyForAllPairs. -->
+			<parameter name="Project66.cellNumbers">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.bundleNames">
+			<parameter name="Project66.bundleNames">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.mpin">
+			<parameter name="Project66.mpin">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.deviceCandidates">
+			<parameter name="Project66.deviceCandidates">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.simCardPositions">
+			<parameter name="Project66.simCardPositions">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.callDestinationNumber">
+			<parameter name="Project66.callDestinationNumber">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.networkProvider">
+			<parameter name="Project66.networkProvider">
 				<type>String</type>
 				<default>Vodacom</default>
 			</parameter>
-			<parameter name="Project57.paymentMethod">
+			<parameter name="Project66.paymentMethod">
 				<type>String</type>
 				<default>Airtime</default>
 			</parameter>
-			<parameter name="Project57.videoUrl">
+			<parameter name="Project66.videoUrl">
 				<type>String</type>
 				<default></default>
 			</parameter>
-			<parameter name="Project57.watchSeconds">
+			<parameter name="Project66.watchSeconds">
 				<type>String</type>
 				<default>600</default>
 			</parameter>
