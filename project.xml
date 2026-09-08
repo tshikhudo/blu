@@ -1,0 +1,117 @@
+<root>
+	<project>
+		<id>57</id>
+		<customer_name>SIGOS_INTERNAL</customer_name>
+		<content>com/sigos_internal/vodapay</content>
+		<error_categories>
+		</error_categories>
+		<error_codes>
+		</error_codes>
+		<transaction_error_code>
+		</transaction_error_code>
+		<devices>
+			<device>
+				<mcd>25011</mcd>
+				<package_instance_id>13</package_instance_id>
+				<name>Samsung Galaxy S23 left</name>
+			</device>
+		</devices>
+		<implementations>
+			<implementation>
+				<device_guid>SAMSUNG.ANDRD.GALAXY.S23</device_guid>
+				<implementation_name>SAMSUNG_ANDRD_GALAXY_S23</implementation_name>
+				<guid_associated_mcd>25012,25011</guid_associated_mcd>
+			</implementation>
+		</implementations>
+		<cleanup>
+		</cleanup>
+		<parameters>
+			<parameter name="Project57.mustLogin">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<!-- TODO: added by hand, schema copied from the one entry above (already
+			     confirmed present), NOT verified in Studio itself. If these don't show
+			     up as fillable fields when scheduling VodaPay_Social_Bundle_Depletion
+			     from the SITE Web UI, this is the wrong mechanism and the real one
+			     needs checking in Studio's Properties/Parameters screen instead. -->
+			<parameter name="Project57.cellNumber">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.bundleName">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<!-- Primary Web-UI-driven inputs (2026-09-07): a tester picks a LIST of
+			     SIM numbers and a LIST of bundles to run through in one batch,
+			     semicolon-separated and paired by position (cellNumbers[i] buys
+			     bundleNames[i], both lists must be the same length). These take
+			     priority over the singular cellNumber/bundleName above when set,
+			     see VodaPay_Social_Bundle_Depletion.runJourneyForAllPairs. -->
+			<parameter name="Project57.cellNumbers">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.bundleNames">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.mpin">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.deviceCandidates">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.simCardPositions">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.callDestinationNumber">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.networkProvider">
+				<type>String</type>
+				<default>Vodacom</default>
+			</parameter>
+			<parameter name="Project57.paymentMethod">
+				<type>String</type>
+				<default>Airtime</default>
+			</parameter>
+			<parameter name="Project57.videoUrl">
+				<type>String</type>
+				<default></default>
+			</parameter>
+			<parameter name="Project57.watchSeconds">
+				<type>String</type>
+				<default>600</default>
+			</parameter>
+		</parameters>
+		<certification>
+			<enabled>false</enabled>
+			<upload_app_testcase>null</upload_app_testcase>
+			<parameters>
+			</parameters>
+		</certification>
+		<options>
+			<timeout_to_aquire_device>0</timeout_to_aquire_device>
+		</options>
+		<dependencies>
+		</dependencies>
+		<recordPlayback>
+			<enabled>true</enabled>
+		</recordPlayback>
+		<alertSuppression>
+			<alertStartTime>12:00 AM</alertStartTime>
+			<alertEndTime>12:00 AM</alertEndTime>
+			<alertRecurrenceEndDay>NoEndDate</alertRecurrenceEndDay>
+			<alertRecurrenceStartDay>Thu, 04 Dec 2025</alertRecurrenceStartDay>
+			<alertRecurrenceInWeeks>1</alertRecurrenceInWeeks>
+			<alertRecurrenceTimeZone></alertRecurrenceTimeZone>
+			<alertRecurrenceEnabled>false</alertRecurrenceEnabled>
+		</alertSuppression>
+	</project>
+</root>

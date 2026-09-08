@@ -1,0 +1,50 @@
+<project default="build">
+    <property environment="env"/>
+
+    <property name="project.full_name" value=""/>
+    <property name="project.content" value="com/sigos_internal/vodapay"/>        
+
+    <target name="clean">
+        <delete dir="bin" failonerror="false"/>
+    </target>
+
+    <target name="compile">
+	<echo message="Compiling ${project.full_name}..."/>
+        <mkdir dir="bin/classes"/>
+    	<mkdir dir="lib/user"/>
+
+        <javac srcdir="src" destdir="bin/classes" debug="true">    	
+            <classpath>    		   
+                <fileset dir="lib/user">
+                    <include name="**/*.jar"/>      
+                </fileset>
+                <fileset dir="lib/da">
+                    <include name="**/*.jar"/>      
+                </fileset>
+            </classpath>                           
+        </javac>
+    </target>
+
+    <target name="resources">
+    </target>
+
+    <target name="build" depends="resources, compile"></target>
+
+    <target name="rebuild" depends="clean,build"></target>
+
+    <target name="run" depends="resources, compile">
+        <java classname="${script_class}">
+            <classpath>
+                <pathelement path="bin/classes"/>
+                <fileset dir="lib/da">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="lib/user">
+                    <include name="**/*.jar"/>
+                </fileset>
+             </classpath>
+             <arg line="${script_args}"/>
+        </java>
+    </target>
+</project>
+
