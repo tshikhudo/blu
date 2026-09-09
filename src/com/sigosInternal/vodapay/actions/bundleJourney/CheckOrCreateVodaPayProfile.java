@@ -83,7 +83,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 	// "Welcome to VodaPay!" carousel slide, then a "Don't miss out" notification
 	// opt-in popup (dismissed via its own top-right X, catalogued in
 	// PopupDismisser). Order isn't hard-relied on -- this just waits for
-	// whichever shows up first before handing off to PopupDismisser.
+	// whichever shows up first before handing off to DismissKnownPopups.
 	private static final String WELCOME_CAROUSEL_LABEL = "Welcome to VodaPay!";
 	private static final String NOTIFICATION_OPTIN_LABEL = "Don't miss out";
 
@@ -117,7 +117,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 			// Already logged in as *someone* -- confirm it's the right account before
 			// treating this as a no-op. See "My account" (tap the profile avatar,
 			// top-left of Home) for the masked number.
-			return verifyLoggedInAccountMatches(device, api, cellNumber);
+			return verifyLoggedInAccountMatches(device, context, api, cellNumber);
 		}
 
 		ObjectTree[] cellField = api.findObjectsByText(CELL_NUMBER_FIELD_LABEL);
@@ -137,16 +137,16 @@ public class CheckOrCreateVodaPayProfile extends Action
 		// practice (network-dependent SMS delivery especially), and this is
 		// exactly the kind of step a fixed sleep gets wrong across different
 		// numbers/networks in a batch run.
-		if (!ScreenSync.waitFor(device, getCurrentContext(), SMS_DELIVERY_TIMEOUT_MS, OTP_FIELD_LABEL))
+		if (!waitForText(device, context, SMS_DELIVERY_TIMEOUT_MS, OTP_FIELD_LABEL))
 			return fail("OTP screen (" + OTP_FIELD_LABEL + ") never appeared after submitting " + cellNumber);
 
-		String otp = readOtpFromMessagesApp(device);
+		String otp = readOtpFromMessagesApp(device, context);
 		if (otp == null)
 			return fail("Could not find an OTP in the Messages app for " + cellNumber);
 
 		// switch back to VodaPay -- reading the SMS above changed the foreground app
 		api.experimental.startApplication(VODAPAY_PACKAGE);
-		if (!ScreenSync.waitFor(device, getCurrentContext(), SETTLE_TIMEOUT_MS, OTP_FIELD_LABEL))
+		if (!waitForText(device, context, SETTLE_TIMEOUT_MS, OTP_FIELD_LABEL))
 			return fail("OTP field wasn't ready after switching back to VodaPay");
 
 		ObjectTree[] otpField = api.findObjectsByText(OTP_FIELD_LABEL);
@@ -160,7 +160,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 		// started"/"Secure your profile", an already-registered number logs
 		// straight into Home (none of these three reappear), and a rejected OTP
 		// stays on/returns to the logged-out screen.
-		ScreenSync.waitForAny(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS,
+		waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS,
 				NAME_FIELD_LABEL, PIN_SECTION_LABEL, LOGGED_OUT_MARKER_LABEL);
 
 		if (api.findObjectsByText(LOGGED_OUT_MARKER_LABEL).length == 0
@@ -193,7 +193,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 			if (acceptBtn.length == 0)
 				return fail("Could not find button: " + ACCEPT_BUTTON_LABEL);
 			acceptBtn[0].click();
-			if (!ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, PIN_SECTION_LABEL))
+			if (!waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, PIN_SECTION_LABEL))
 				return fail("PIN screen (" + PIN_SECTION_LABEL + ") never appeared after Accept");
 		}
 
@@ -213,7 +213,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 			if (continueBtn.length == 0)
 				return fail("Could not find button: " + CONTINUE_BUTTON_LABEL);
 			continueBtn[0].click();
-			ScreenSync.waitForAny(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS,
+			waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS,
 					WELCOME_CAROUSEL_LABEL, NOTIFICATION_OPTIN_LABEL);
 		}
 
@@ -223,7 +223,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 		// way rather than hard-coded steps, since their order/presence can vary.
 		device.getObjectLevelApi().doSwipe(com.mc.api.device.SwipeSize.LARGE, com.mc.api.device.SwipeDirection.LEFT);
 		device.serverWait(getCurrentContext(), 500); // swipe animation settle, not a network load
-		PopupDismisser.dismissKnownPopups(device, getCurrentContext());
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.DismissKnownPopups"));
 
 		// The native call-permission dialog isn't WebView/VodaPay text -- it's a
 		// system dialog, found the same way as any other object-level element.
@@ -241,7 +241,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 	 * number masked as e.g. "065 *** 3962". Confirms the already-logged-in session
 	 * actually belongs to the number this run needs, instead of assuming so.
 	 */
-	private ScriptReturn verifyLoggedInAccountMatches(Device device, ObjectLevelApi api, String cellNumber) throws Exception
+	private ScriptReturn verifyLoggedInAccountMatches(Device device, IScriptContext context, ObjectLevelApi api, String cellNumber) throws Exception
 	{
 		final String local = cellNumber.startsWith("0") ? cellNumber.substring(1) : cellNumber;
 		if (local.length() < 7)
@@ -261,7 +261,9 @@ public class CheckOrCreateVodaPayProfile extends Action
 		// Wait for a masked number (any masked number, not necessarily the
 		// expected one) to actually render before reading the screen -- confirms
 		// the account screen loaded rather than assuming a fixed delay was enough.
-		ScreenSync.waitForRegex(device, getCurrentContext(), SETTLE_TIMEOUT_MS, MASKED_NUMBER_REGEX);
+		context.put("screenSyncRegex", MASKED_NUMBER_REGEX);
+		context.put("screenSyncTimeoutMs", String.valueOf(SETTLE_TIMEOUT_MS));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.WaitForTextRegex"));
 
 		String screenText = api.getCurrentScreen().getAllTextInSingleString();
 		boolean matches = screenText.contains(expectedMasked);
@@ -340,9 +342,10 @@ public class CheckOrCreateVodaPayProfile extends Action
 	/**
 	 * Extracts the most recent 4-8 digit code visible in the Messages app.
 	 */
-	private String readOtpFromMessagesApp(Device device) throws Exception
+	private String readOtpFromMessagesApp(Device device, IScriptContext context) throws Exception
 	{
-		String screenText = SmsReader.readVisibleMessagesText(device, getCurrentContext());
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.ReadVisibleSmsText"));
+		String screenText = context.get("smsVisibleText");
 		Matcher matcher = OTP_PATTERN.matcher(screenText);
 
 		String lastMatch = null;
@@ -350,6 +353,15 @@ public class CheckOrCreateVodaPayProfile extends Action
 			lastMatch = matcher.group();
 
 		return lastMatch;
+	}
+
+	/** Thin wrapper around the WaitForText Action -- see its class doc for why this can't just be a direct method call. A single text is just a length-1 varargs call. */
+	private boolean waitForText(Device device, IScriptContext context, long timeoutMs, String... texts) throws Exception
+	{
+		context.put("screenSyncTexts", WaitForText.joinCandidates(texts));
+		context.put("screenSyncTimeoutMs", String.valueOf(timeoutMs));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.WaitForText"));
+		return Boolean.parseBoolean(context.get("screenSyncFound"));
 	}
 
 	private ScriptReturn fail(String message)

@@ -57,7 +57,7 @@ public class DepleteVoiceMinutes extends Action
 		// Action parameters:
 		//   callDestinationNumber -- the number to call (another test line, so the
 		//                            cost/traffic stays internal to the team)
-		//   voiceMinutes           -- how many minutes to burn, from BundleComposition
+		//   voiceMinutes           -- how many minutes to burn, from ParseBundleComposition
 		final String destinationNumber = context.get("callDestinationNumber");
 		if (destinationNumber == null || destinationNumber.trim().isEmpty())
 			return new ScriptReturn(getCurrentContext(), ScriptReturn.ScriptReturnCode.FAIL, "callDestinationNumber parameter was not set");

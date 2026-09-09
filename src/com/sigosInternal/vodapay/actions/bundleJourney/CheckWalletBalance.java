@@ -46,7 +46,9 @@ public class CheckWalletBalance extends Action
 	{
 		ObjectLevelApi api = device.getObjectLevelApi();
 		api.experimental.startApplication(VODAPAY_PACKAGE);
-		ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, WALLET_BALANCE_LABEL);
+		context.put("screenSyncTexts", WaitForText.joinCandidates(WALLET_BALANCE_LABEL));
+		context.put("screenSyncTimeoutMs", String.valueOf(SCREEN_TRANSITION_TIMEOUT_MS));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.WaitForText"));
 
 		if (api.findObjectsByText(WALLET_BALANCE_LABEL).length == 0)
 			return new ScriptReturn(getCurrentContext(), ScriptReturn.ScriptReturnCode.FAIL, "Not on the Home screen -- could not find: " + WALLET_BALANCE_LABEL);

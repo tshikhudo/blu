@@ -13,7 +13,6 @@ import com.mc.api.script.exception.ScriptFailureException;
 import com.mc.api.script.result.ScriptResult;
 import com.mc.api.testcase.TestCase;
 import com.mc.api.testcase.helper.TestCaseHelper;
-import com.sigosInternal.vodapay.BundleComposition;
 
 import java.util.Map;
 
@@ -122,7 +121,7 @@ public class VodaPaySocialBundleDepletion extends TestCase
     //                                the plural lists above are given.
     // The bundle's own display text ("60 VC Min+100MB for 1 day - R10") already
     // tells us its price and which resources it contains -- see
-    // BundleComposition -- so there's no separate product-type/price lookup to
+    // ParseBundleComposition -- so there's no separate product-type/price lookup to
     // maintain per bundle. Everything else below is test-infrastructure
     // configuration, not something a tester supplies per run:
     //   mpin                    -- test SIM's VodaPay PIN (shared across the
@@ -337,8 +336,16 @@ public class VodaPaySocialBundleDepletion extends TestCase
   private void runJourney(Device device, IScriptContext context) throws ScriptFailureException, InterruptedException, DeviceExecutionException
   {
     final String bundleName = context.get("bundleName");
-    final BundleComposition composition = BundleComposition.parse(bundleName == null ? "" : bundleName);
-    System.out.println("Parsed " + bundleName + " -> " + composition);
+    context.put("bundleName", bundleName == null ? "" : bundleName);
+    device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.ParseBundleComposition"));
+    final boolean hasData = Boolean.parseBoolean(context.get("bundleHasData"));
+    final boolean hasVoiceMinutes = Boolean.parseBoolean(context.get("bundleHasVoiceMinutes"));
+    final boolean hasSms = Boolean.parseBoolean(context.get("bundleHasSms"));
+    final String bundlePrice = context.get("bundlePrice");
+    final String bundleVoiceMinutes = context.get("bundleVoiceMinutes");
+    final String bundleSmsCount = context.get("bundleSmsCount");
+    System.out.println("Parsed " + bundleName + " -> hasData=" + hasData + " hasVoiceMinutes=" + hasVoiceMinutes
+        + " hasSms=" + hasSms + " price=" + bundlePrice);
 
     Action installVodaPay = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.InstallVodaPayApp");
     Action launchVodaPay = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.LaunchVodaPay");
@@ -385,7 +392,7 @@ public class VodaPaySocialBundleDepletion extends TestCase
     // identify the new bundle is diffing before/after row lists rather than
     // assuming a name -- see CheckDetailedBalanceRow's context.get
     // ("detailedBalanceRows_<category>") for the before/after strings.
-    String detailedCategory = composition.hasData() ? "Data" : composition.hasVoiceMinutes() ? "Voice" : composition.hasSms() ? "SMS" : null;
+    String detailedCategory = hasData ? "Data" : hasVoiceMinutes ? "Voice" : hasSms ? "SMS" : null;
     String detailedRowsBefore = null;
     if (checkDetailedBalanceRow != null && detailedCategory != null)
     {
@@ -418,13 +425,13 @@ public class VodaPaySocialBundleDepletion extends TestCase
     // Provisioning SMS check: the bundle's own price (and, when present, its data
     // component) is what the confirmation SMS should mention -- reuses the same
     // composition already parsed from bundleName, no separate expected-text input.
-    if (verifySms != null && composition.getPrice() != null)
+    if (verifySms != null && !bundlePrice.isEmpty())
     {
-      context.put("expectedSmsText", "R" + composition.getPrice());
+      context.put("expectedSmsText", "R" + bundlePrice);
       device.execute(verifySms);
     }
 
-    if (composition.hasData())
+    if (hasData)
     {
       if (launchYouTube != null)
         device.execute(launchYouTube);
@@ -432,28 +439,28 @@ public class VodaPaySocialBundleDepletion extends TestCase
         device.execute(playVideo);
     }
 
-    if (composition.hasVoiceMinutes())
+    if (hasVoiceMinutes)
     {
       final String callDestination = context.get("callDestinationNumber");
       if (callDestination == null || callDestination.trim().isEmpty())
       {
-        System.out.println(bundleName + " includes " + composition.getVoiceMinutes()
+        System.out.println(bundleName + " includes " + bundleVoiceMinutes
             + " voice minutes, but no callDestinationNumber was supplied -- skipping voice depletion.");
       }
       else if (depleteVoiceMinutes != null)
       {
-        context.put("voiceMinutes", String.valueOf(composition.getVoiceMinutes()));
+        context.put("voiceMinutes", bundleVoiceMinutes);
         device.execute(depleteVoiceMinutes);
       }
     }
 
-    if (composition.hasSms())
+    if (hasSms)
     {
       // No SMS-sending depletion action exists yet -- device.sendSMS(SMSHelper) is a
       // real API in this SDK, but its recipient-targeting semantics weren't confirmed
       // (SMSHelper only exposes applicationID + messageText, no explicit recipient
       // field), so building this needs more digging before it can be trusted.
-      System.out.println(bundleName + " includes " + composition.getSmsCount() + " SMS -- SMS depletion not yet implemented.");
+      System.out.println(bundleName + " includes " + bundleSmsCount + " SMS -- SMS depletion not yet implemented.");
     }
 
     if (verifyDepleted != null)

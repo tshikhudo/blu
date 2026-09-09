@@ -71,8 +71,10 @@ public class CheckAllVodacomBalances extends Action
 	{
 		ObjectLevelApi api = device.getObjectLevelApi();
 		api.experimental.startApplication(VODAPAY_PACKAGE);
-		ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, MY_VODACOM_TAB_LABEL);
-		PopupDismisser.dismissKnownPopups(device, getCurrentContext());
+		context.put("screenSyncTexts", WaitForText.joinCandidates(MY_VODACOM_TAB_LABEL));
+		context.put("screenSyncTimeoutMs", String.valueOf(SCREEN_TRANSITION_TIMEOUT_MS));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.WaitForText"));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.DismissKnownPopups"));
 
 		if (api.findObjectsByText(MY_VODACOM_TAB_LABEL).length == 0)
 			return fail("Could not find nav tab: " + MY_VODACOM_TAB_LABEL);

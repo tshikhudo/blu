@@ -54,7 +54,8 @@ public class VerifySmsReceived extends Action
 		long waited = 0;
 		while (waited <= timeoutMs)
 		{
-			String screenText = SmsReader.readVisibleMessagesText(device, getCurrentContext());
+			device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.ReadVisibleSmsText"));
+			String screenText = context.get("smsVisibleText");
 
 			boolean allFound = true;
 			for (String fragment : expectedFragments)

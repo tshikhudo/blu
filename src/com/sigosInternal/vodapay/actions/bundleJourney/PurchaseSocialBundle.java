@@ -7,7 +7,6 @@ import com.mc.api.device.ObjectLevelApi;
 import com.mc.api.device.ObjectTree;
 import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
-import com.sigosInternal.vodapay.BundleComposition;
 
 import java.awt.Point;
 
@@ -55,8 +54,8 @@ import java.awt.Point;
  *    instead of attempting an unconfirmed tap sequence.
  *  - The third product tab next to Data/Voice (its exact text was truncated
  *    on screen as "Your tow..." and never confirmed) -- SMS bundles can't be
- *    bought through this action yet. composition.hasSms() without hasData()/
- *    hasVoiceMinutes() also FAILS clearly rather than guessing a tab name.
+ *    bought through this action yet. bundleHasSms without bundleHasData/
+ *    bundleHasVoiceMinutes also FAILS clearly rather than guessing a tab name.
  */
 public class PurchaseSocialBundle extends Action
 {
@@ -115,55 +114,58 @@ public class PurchaseSocialBundle extends Action
 		String paymentMethod = context.get("paymentMethod");
 		if (paymentMethod == null || paymentMethod.trim().isEmpty())
 			paymentMethod = "Airtime";
-		final BundleComposition composition = BundleComposition.parse(bundleName);
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.ParseBundleComposition"));
+		final boolean hasData = Boolean.parseBoolean(context.get("bundleHasData"));
+		final boolean hasVoiceMinutes = Boolean.parseBoolean(context.get("bundleHasVoiceMinutes"));
+		final String bundlePrice = context.get("bundlePrice");
 
 		ObjectLevelApi api = device.getObjectLevelApi();
 		api.experimental.startApplication(VODAPAY_PACKAGE);
-		ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, BUY_QUICK_ACTION_LABEL);
-		PopupDismisser.dismissKnownPopups(device, getCurrentContext());
+		waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, BUY_QUICK_ACTION_LABEL);
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.DismissKnownPopups"));
 
 		if (!tapByText(device, api, BUY_QUICK_ACTION_LABEL))
 			return fail("Could not find the \"Buy\" quick action on Home");
 		// The one-time CVV/security info screen (if this account/session hasn't
 		// seen it before) sits in front of the actual Buy screen -- wait for
-		// either it or the Buy screen itself, then let PopupDismisser clear the
-		// info screen's "Got it" button if it showed up.
-		ScreenSync.waitForAny(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, BUY_FOR_ANOTHER_LABEL, "Got it");
-		PopupDismisser.dismissKnownPopups(device, getCurrentContext());
-		if (!ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, BUY_FOR_ANOTHER_LABEL))
+		// either it or the Buy screen itself, then let DismissKnownPopups clear
+		// the info screen's "Got it" button if it showed up.
+		waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, BUY_FOR_ANOTHER_LABEL, "Got it");
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.DismissKnownPopups"));
+		if (!waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, BUY_FOR_ANOTHER_LABEL))
 			return fail("Buy screen (" + BUY_FOR_ANOTHER_LABEL + " not found) never loaded");
 
 		// "Data" / "Voice" tab -- see class doc for why SMS isn't supported here yet.
-		String productTab = composition.hasData() ? "Data" : composition.hasVoiceMinutes() ? "Voice" : null;
+		String productTab = hasData ? "Data" : hasVoiceMinutes ? "Voice" : null;
 		if (productTab == null)
 			return fail("Could not determine a supported product tab (Data/Voice) from bundleName: " + bundleName
 					+ " -- SMS bundles aren't supported by this action yet, see class doc");
 		if (!tapByText(device, api, productTab))
 			return fail("Could not find product tab: " + productTab);
-		if (!ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, CHOOSE_A_BUNDLE_LABEL))
+		if (!waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, CHOOSE_A_BUNDLE_LABEL))
 			return fail("\"" + CHOOSE_A_BUNDLE_LABEL + "\" section never appeared after selecting the " + productTab + " tab");
 
-		if (!expandCategoryAndFindBundle(device, api, bundleName))
+		if (!expandCategoryAndFindBundle(device, context, api, bundleName))
 			return fail("Could not find bundle \"" + bundleName + "\" under any validity category ("
 					+ String.join(", ", VALIDITY_CATEGORIES) + ")");
 
-		if (composition.getPrice() != null)
+		if (!bundlePrice.isEmpty())
 		{
-			ObjectTree[] priceOnScreen = api.findObjectsByText("R" + composition.getPrice());
+			ObjectTree[] priceOnScreen = api.findObjectsByText("R" + bundlePrice);
 			if (priceOnScreen.length == 0)
-				priceOnScreen = api.findObjectsByText("R " + composition.getPrice());
+				priceOnScreen = api.findObjectsByText("R " + bundlePrice);
 			if (priceOnScreen.length == 0)
-				return fail("Expected price R" + composition.getPrice() + " not found next to bundle " + bundleName + " -- wrong bundle or price changed");
+				return fail("Expected price R" + bundlePrice + " not found next to bundle " + bundleName + " -- wrong bundle or price changed");
 		}
 
 		if (!tapByText(device, api, bundleName))
 			return fail("Could not tap bundle: " + bundleName);
-		if (!ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, PAYMENT_SUMMARY_TOTAL_LABEL))
+		if (!waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, PAYMENT_SUMMARY_TOTAL_LABEL))
 			return fail("Payment summary screen (" + PAYMENT_SUMMARY_TOTAL_LABEL + ") never appeared after tapping the bundle");
 
 		if (!tapByText(device, api, paymentMethod))
 			return fail("Could not find payment method: " + paymentMethod);
-		if (!ScreenSync.waitFor(device, getCurrentContext(), SCREEN_TRANSITION_TIMEOUT_MS, BUY_NOW_BUTTON_LABEL))
+		if (!waitForText(device, context, SCREEN_TRANSITION_TIMEOUT_MS, BUY_NOW_BUTTON_LABEL))
 			return fail("\"" + BUY_NOW_BUTTON_LABEL + "\" button never appeared after selecting payment method " + paymentMethod);
 
 		if (!tapByText(device, api, BUY_NOW_BUTTON_LABEL))
@@ -230,7 +232,7 @@ public class PurchaseSocialBundle extends Action
 	 * re-tapping an expanded category's chevron just collapses it, so this
 	 * only taps a category when the bundle isn't already visible.
 	 */
-	private boolean expandCategoryAndFindBundle(Device device, ObjectLevelApi api, String bundleName) throws Exception
+	private boolean expandCategoryAndFindBundle(Device device, IScriptContext context, ObjectLevelApi api, String bundleName) throws Exception
 	{
 		if (api.findObjectsByText(bundleName).length > 0)
 			return true;
@@ -243,12 +245,21 @@ public class PurchaseSocialBundle extends Action
 
 			Point center = new Point(categoryHeader[0].getX() + categoryHeader[0].getWidth() / 2, categoryHeader[0].getY() + categoryHeader[0].getHeight() / 2);
 			device.sendTouchClick(center);
-			ScreenSync.waitFor(device, getCurrentContext(), CATEGORY_EXPAND_TIMEOUT_MS, bundleName);
+			waitForText(device, context, CATEGORY_EXPAND_TIMEOUT_MS, bundleName);
 
 			if (api.findObjectsByText(bundleName).length > 0)
 				return true;
 		}
 		return false;
+	}
+
+	/** Thin wrapper around the WaitForText Action -- see its class doc for why this can't just be a direct method call. A single text is just a length-1 varargs call. */
+	private boolean waitForText(Device device, IScriptContext context, long timeoutMs, String... texts) throws Exception
+	{
+		context.put("screenSyncTexts", WaitForText.joinCandidates(texts));
+		context.put("screenSyncTimeoutMs", String.valueOf(timeoutMs));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.WaitForText"));
+		return Boolean.parseBoolean(context.get("screenSyncFound"));
 	}
 
 }

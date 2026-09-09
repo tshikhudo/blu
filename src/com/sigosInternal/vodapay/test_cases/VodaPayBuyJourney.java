@@ -13,7 +13,6 @@ import com.mc.api.script.exception.ScriptFailureException;
 import com.mc.api.script.result.ScriptResult;
 import com.mc.api.testcase.TestCase;
 import com.mc.api.testcase.helper.TestCaseHelper;
-import com.sigosInternal.vodapay.BundleComposition;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -310,7 +309,11 @@ public class VodaPayBuyJourney extends TestCase
     final String cellNumber = context.get("cellNumber");
     final String bundleName = context.get("bundleName");
     final boolean buying = bundleName != null && !bundleName.trim().isEmpty();
-    final BundleComposition composition = buying ? BundleComposition.parse(bundleName) : null;
+    if (buying)
+      device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.ParseBundleComposition"));
+    final boolean hasData = buying && Boolean.parseBoolean(context.get("bundleHasData"));
+    final boolean hasVoiceMinutes = buying && Boolean.parseBoolean(context.get("bundleHasVoiceMinutes"));
+    final boolean hasSms = buying && Boolean.parseBoolean(context.get("bundleHasSms"));
 
     Action launchVodaPay = Action.get("com.sigosInternal.vodapay.actions.applicationManagement.LaunchVodaPay");
     Action checkOrCreateProfile = Action.get("com.sigosInternal.vodapay.actions.bundleJourney.CheckOrCreateVodaPayProfile");
@@ -339,7 +342,7 @@ public class VodaPayBuyJourney extends TestCase
     }
 
     String detailedCategory = buying
-        ? (composition.hasData() ? "Data" : composition.hasVoiceMinutes() ? "Voice" : composition.hasSms() ? "SMS" : null)
+        ? (hasData ? "Data" : hasVoiceMinutes ? "Voice" : hasSms ? "SMS" : null)
         : null;
     String detailedRowsBefore = null;
     if (buying && checkDetailedBalanceRow != null && detailedCategory != null)

@@ -6,7 +6,7 @@ import com.mc.api.device.Device;
 import com.mc.api.device.ObjectLevelApi;
 import com.mc.api.script.IScriptContext;
 import com.mc.api.script.ScriptReturn;
-import com.sigosInternal.vodapay.actions.bundleJourney.ScreenSync;
+import com.sigosInternal.vodapay.actions.bundleJourney.WaitForText;
 
 
 public class LaunchVodaPay extends Action
@@ -43,7 +43,9 @@ public class LaunchVodaPay extends Action
 		// Wait for the app to actually reach a recognisable landing screen
 		// (either Home or the logged-out screen) rather than a fixed guess --
 		// cold-start time varies a lot by device/account state.
-		ScreenSync.waitForAny(device, getCurrentContext(), LAUNCH_TIMEOUT_MS, HOME_MARKER_LABEL, LOGGED_OUT_MARKER_LABEL);
+		context.put("screenSyncTexts", WaitForText.joinCandidates(HOME_MARKER_LABEL, LOGGED_OUT_MARKER_LABEL));
+		context.put("screenSyncTimeoutMs", String.valueOf(LAUNCH_TIMEOUT_MS));
+		device.execute(Action.get("com.sigosInternal.vodapay.actions.bundleJourney.WaitForText"));
 
 		return SUCCESS();
 	}
