@@ -61,6 +61,14 @@
 				<type>String</type>
 				<default></default>
 			</parameter>
+			<parameter name="Project66.firstName">
+				<type>String</type>
+				<default>SIGOS</default>
+			</parameter>
+			<parameter name="Project66.lastName">
+				<type>String</type>
+				<default>Test</default>
+			</parameter>
 			<parameter name="Project66.deviceCandidates">
 				<type>String</type>
 				<default></default>
