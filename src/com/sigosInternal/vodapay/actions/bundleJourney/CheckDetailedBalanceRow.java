@@ -145,14 +145,13 @@ public class CheckDetailedBalanceRow extends Action
 		}
 
 		context.put("detailedBalanceRows_" + category, allRows.toString());
-		// Also written under this fixed, category-independent key -- a purely
-		// declarative/visual TestCase (built in Studio's own flow editor, not
-		// hand-coded Java) can't dynamically construct "detailedBalanceRows_" +
-		// category as a lookup key, since the category itself is only known at
-		// runtime (from DetermineBalanceCategory's own output). Callers that DO
-		// know the category ahead of time can keep using the specific key above;
-		// this one exists so a before/after snapshot can be copied out (see
-		// CopyContextValue) without needing to know which category it was.
+		// Also written under this fixed, category-independent key -- some
+		// callers (e.g. SnapshotBalancesBefore) want "whatever category this
+		// call just checked" without needing to know in advance which one that
+		// was, since a Visual TestCase runs this action three times in a row
+		// (once per category, via SetBalanceCategoryData/Voice/Sms) and reads
+		// each result back through its own specific "detailedBalanceRows_"
+		// + category key rather than this shared one.
 		context.put("detailedBalanceRowsSnapshot", allRows.toString());
 
 		if (rowName != null && !foundRequestedRow)

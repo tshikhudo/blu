@@ -5,7 +5,7 @@
 		<DataTableID>0</DataTableID>
 		<Description></Description>
 		<ID>0</ID>
-		<desc>InstallVodaPayApp</desc>
+		<desc>LaunchVodaPay</desc>
 		<ImageHeaderId></ImageHeaderId>
 		<IsActive>true</IsActive>
 		<IsExpanded>false</IsExpanded>
@@ -21,47 +21,6 @@
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
 		<Y>0</Y>
-		<Path>com.sigosInternal.vodapay.actions.applicationManagement.InstallVodaPayApp</Path>
-		<Timeout>30.0</Timeout>
-		<FailOnTimeout>true</FailOnTimeout>
-		<FailMessage></FailMessage>
-		<ErrorType></ErrorType>
-		<MainCategory></MainCategory>
-		<ErrorCodeValue>0</ErrorCodeValue>
-		<SubCategory></SubCategory>
-		<CheckPoint>false</CheckPoint>
-		<Comment></Comment>
-		<ResultFilePrefix></ResultFilePrefix>
-		<ProofType>NONE</ProofType>
-		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
-		<VideoFormat>MPEG</VideoFormat>
-		<IncludeAudio>false</IncludeAudio>
-		<ImageInterval>5</ImageInterval>
-		<type>ExecuteAction</type>
-		<slot_num>1</slot_num>
-		<supportsReturn>false</supportsReturn>
-	</command>
-	<command name="ExecuteAction">
-		<AudioHeaderID>0</AudioHeaderID>
-		<DataTableID>0</DataTableID>
-		<Description></Description>
-		<ID>0</ID>
-		<desc>LaunchVodaPay</desc>
-		<ImageHeaderId></ImageHeaderId>
-		<IsActive>true</IsActive>
-		<IsExpanded>false</IsExpanded>
-		<IsMacroCall>false</IsMacroCall>
-		<IsStartNode>false</IsStartNode>
-		<ResourceBundleWID>0</ResourceBundleWID>
-		<ScriptCommandID>ExecuteAction</ScriptCommandID>
-		<ScriptElementOverrideID>0</ScriptElementOverrideID>
-		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
-		<ScriptElementTimestamp>0</ScriptElementTimestamp>
-		<ScriptID>0</ScriptID>
-		<SlotNum>1</SlotNum>
-		<StartPhoneNum>0</StartPhoneNum>
-		<X>0</X>
-		<Y>1</Y>
 		<Path>com.sigosInternal.vodapay.actions.applicationManagement.LaunchVodaPay</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
@@ -102,49 +61,8 @@
 		<SlotNum>1</SlotNum>
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
-		<Y>2</Y>
+		<Y>1</Y>
 		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckOrCreateVodaPayProfile</Path>
-		<Timeout>30.0</Timeout>
-		<FailOnTimeout>true</FailOnTimeout>
-		<FailMessage></FailMessage>
-		<ErrorType></ErrorType>
-		<MainCategory></MainCategory>
-		<ErrorCodeValue>0</ErrorCodeValue>
-		<SubCategory></SubCategory>
-		<CheckPoint>false</CheckPoint>
-		<Comment></Comment>
-		<ResultFilePrefix></ResultFilePrefix>
-		<ProofType>NONE</ProofType>
-		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
-		<VideoFormat>MPEG</VideoFormat>
-		<IncludeAudio>false</IncludeAudio>
-		<ImageInterval>5</ImageInterval>
-		<type>ExecuteAction</type>
-		<slot_num>1</slot_num>
-		<supportsReturn>false</supportsReturn>
-	</command>
-	<command name="ExecuteAction">
-		<AudioHeaderID>0</AudioHeaderID>
-		<DataTableID>0</DataTableID>
-		<Description></Description>
-		<ID>0</ID>
-		<desc>CheckWalletBalance</desc>
-		<ImageHeaderId></ImageHeaderId>
-		<IsActive>true</IsActive>
-		<IsExpanded>false</IsExpanded>
-		<IsMacroCall>false</IsMacroCall>
-		<IsStartNode>false</IsStartNode>
-		<ResourceBundleWID>0</ResourceBundleWID>
-		<ScriptCommandID>ExecuteAction</ScriptCommandID>
-		<ScriptElementOverrideID>0</ScriptElementOverrideID>
-		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
-		<ScriptElementTimestamp>0</ScriptElementTimestamp>
-		<ScriptID>0</ScriptID>
-		<SlotNum>1</SlotNum>
-		<StartPhoneNum>0</StartPhoneNum>
-		<X>0</X>
-		<Y>3</Y>
-		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckWalletBalance</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
 		<FailMessage></FailMessage>
@@ -184,7 +102,7 @@
 		<SlotNum>1</SlotNum>
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
-		<Y>4</Y>
+		<Y>2</Y>
 		<Path>com.sigosInternal.vodapay.actions.bundleJourney.ParseBundleComposition</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
@@ -210,7 +128,89 @@
 		<DataTableID>0</DataTableID>
 		<Description></Description>
 		<ID>0</ID>
-		<desc>DetermineBalanceCategory</desc>
+		<desc>CheckAllVodacomBalances</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>3</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckAllVodacomBalances</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>CheckWalletBalance</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>4</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckWalletBalance</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>SetBalanceCategoryData</desc>
 		<ImageHeaderId></ImageHeaderId>
 		<IsActive>true</IsActive>
 		<IsExpanded>false</IsExpanded>
@@ -226,7 +226,7 @@
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
 		<Y>5</Y>
-		<Path>com.sigosInternal.vodapay.actions.bundleJourney.DetermineBalanceCategory</Path>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SetBalanceCategoryData</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
 		<FailMessage></FailMessage>
@@ -292,7 +292,7 @@
 		<DataTableID>0</DataTableID>
 		<Description></Description>
 		<ID>0</ID>
-		<desc>SnapshotBalancesBefore</desc>
+		<desc>SetBalanceCategoryVoice</desc>
 		<ImageHeaderId></ImageHeaderId>
 		<IsActive>true</IsActive>
 		<IsExpanded>false</IsExpanded>
@@ -308,7 +308,7 @@
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
 		<Y>7</Y>
-		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SnapshotBalancesBefore</Path>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SetBalanceCategoryVoice</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
 		<FailMessage></FailMessage>
@@ -333,7 +333,7 @@
 		<DataTableID>0</DataTableID>
 		<Description></Description>
 		<ID>0</ID>
-		<desc>PurchaseSocialBundle</desc>
+		<desc>CheckDetailedBalanceRow</desc>
 		<ImageHeaderId></ImageHeaderId>
 		<IsActive>true</IsActive>
 		<IsExpanded>false</IsExpanded>
@@ -349,7 +349,7 @@
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
 		<Y>8</Y>
-		<Path>com.sigosInternal.vodapay.actions.bundleJourney.PurchaseSocialBundle</Path>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckDetailedBalanceRow</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
 		<FailMessage></FailMessage>
@@ -374,7 +374,7 @@
 		<DataTableID>0</DataTableID>
 		<Description></Description>
 		<ID>0</ID>
-		<desc>CheckWalletBalance</desc>
+		<desc>SetBalanceCategorySms</desc>
 		<ImageHeaderId></ImageHeaderId>
 		<IsActive>true</IsActive>
 		<IsExpanded>false</IsExpanded>
@@ -390,7 +390,7 @@
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
 		<Y>9</Y>
-		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckWalletBalance</Path>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SetBalanceCategorySms</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
 		<FailMessage></FailMessage>
@@ -456,7 +456,7 @@
 		<DataTableID>0</DataTableID>
 		<Description></Description>
 		<ID>0</ID>
-		<desc>DiffDetailedBalanceRows</desc>
+		<desc>SnapshotBalancesBefore</desc>
 		<ImageHeaderId></ImageHeaderId>
 		<IsActive>true</IsActive>
 		<IsExpanded>false</IsExpanded>
@@ -472,7 +472,581 @@
 		<StartPhoneNum>0</StartPhoneNum>
 		<X>0</X>
 		<Y>11</Y>
-		<Path>com.sigosInternal.vodapay.actions.bundleJourney.DiffDetailedBalanceRows</Path>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SnapshotBalancesBefore</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>PurchaseSocialBundle</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>12</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.PurchaseSocialBundle</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>CheckAllVodacomBalances</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>13</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckAllVodacomBalances</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>CheckWalletBalance</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>14</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckWalletBalance</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>SetBalanceCategoryData</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>15</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SetBalanceCategoryData</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>CheckDetailedBalanceRow</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>16</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckDetailedBalanceRow</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>SetBalanceCategoryVoice</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>17</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SetBalanceCategoryVoice</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>CheckDetailedBalanceRow</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>18</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckDetailedBalanceRow</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>SetBalanceCategorySms</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>19</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.SetBalanceCategorySms</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>CheckDetailedBalanceRow</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>20</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.CheckDetailedBalanceRow</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>AssertDataProvisioned</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>21</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.AssertDataProvisioned</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>AssertVoiceProvisioned</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>22</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.AssertVoiceProvisioned</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>AssertSmsProvisioned</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>23</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.AssertSmsProvisioned</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>AssertAirtimeDeducted</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>24</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.AssertAirtimeDeducted</Path>
+		<Timeout>30.0</Timeout>
+		<FailOnTimeout>true</FailOnTimeout>
+		<FailMessage></FailMessage>
+		<ErrorType></ErrorType>
+		<MainCategory></MainCategory>
+		<ErrorCodeValue>0</ErrorCodeValue>
+		<SubCategory></SubCategory>
+		<CheckPoint>false</CheckPoint>
+		<Comment></Comment>
+		<ResultFilePrefix></ResultFilePrefix>
+		<ProofType>NONE</ProofType>
+		<AudioVideoProofFrameRate>25</AudioVideoProofFrameRate>
+		<VideoFormat>MPEG</VideoFormat>
+		<IncludeAudio>false</IncludeAudio>
+		<ImageInterval>5</ImageInterval>
+		<type>ExecuteAction</type>
+		<slot_num>1</slot_num>
+		<supportsReturn>false</supportsReturn>
+	</command>
+	<command name="ExecuteAction">
+		<AudioHeaderID>0</AudioHeaderID>
+		<DataTableID>0</DataTableID>
+		<Description></Description>
+		<ID>0</ID>
+		<desc>ReportSoftAssertions</desc>
+		<ImageHeaderId></ImageHeaderId>
+		<IsActive>true</IsActive>
+		<IsExpanded>false</IsExpanded>
+		<IsMacroCall>false</IsMacroCall>
+		<IsStartNode>false</IsStartNode>
+		<ResourceBundleWID>0</ResourceBundleWID>
+		<ScriptCommandID>ExecuteAction</ScriptCommandID>
+		<ScriptElementOverrideID>0</ScriptElementOverrideID>
+		<ScriptElementThumbnailsSID>0</ScriptElementThumbnailsSID>
+		<ScriptElementTimestamp>0</ScriptElementTimestamp>
+		<ScriptID>0</ScriptID>
+		<SlotNum>1</SlotNum>
+		<StartPhoneNum>0</StartPhoneNum>
+		<X>0</X>
+		<Y>25</Y>
+		<Path>com.sigosInternal.vodapay.actions.bundleJourney.ReportSoftAssertions</Path>
 		<Timeout>30.0</Timeout>
 		<FailOnTimeout>true</FailOnTimeout>
 		<FailMessage></FailMessage>

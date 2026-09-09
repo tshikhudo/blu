@@ -8,21 +8,23 @@ import com.mc.api.script.ScriptReturn;
 
 
 /**
- * Preserves the "before" wallet balance and Detailed-balances row snapshot
- * under their own fixed keys, so the later "after" readings (from a second
- * call to CheckWalletBalance/CheckDetailedBalanceRow later in the same
- * sequence) don't overwrite them first.
+ * Preserves every "before" balance reading under its own fixed key, so the
+ * later "after" readings (from a second call to CheckWalletBalance/
+ * CheckAllVodacomBalances/CheckDetailedBalanceRow later in the same sequence)
+ * don't overwrite them first. Covers all four possible bundle resources
+ * (a bundle can be a single one or any combination, per the user):
+ *  - Airtime: balance_anytime_airtime (from CheckAllVodacomBalances)
+ *  - Data: detailedBalanceRows_Data (from CheckDetailedBalanceRow, category Data)
+ *  - Voice: detailedBalanceRows_Voice
+ *  - SMS: detailedBalanceRows_SMS
+ * Also preserves walletBalance (the separate VodaPay Entry Wallet, distinct
+ * from real SIM airtime) in case a run pays via Wallet instead of Airtime.
  *
  * Exists specifically for a Visual/declarative TestCase built in Studio's own
- * flow editor (e.g. a golden-path buy journey): a hand-coded Java TestCase
- * can just stash the "before" value in a local variable before calling the
- * same action again, but a purely declarative sequence of steps has no local
- * variables -- only the shared IScriptContext, and no confirmed way to set a
- * literal per-node parameter on a step in that editor (the one example
- * exported from it shows zero such configuration on any node). So this uses
- * fixed, hardcoded key names on both ends rather than a generic/configurable
- * copy, to avoid needing any node-level configuration at all -- every step in
- * the visual flow just runs as-is, reading/writing well-known context keys.
+ * flow editor: a hand-coded Java TestCase can just stash "before" values in
+ * local variables, but a purely declarative sequence of steps only has the
+ * shared IScriptContext to work with -- see WaitForText's class doc for the
+ * fuller explanation of why every shared helper here is its own Action.
  */
 public class SnapshotBalancesBefore extends Action
 {
@@ -41,18 +43,20 @@ public class SnapshotBalancesBefore extends Action
 	@Override
 	protected ScriptReturn run(Device device, IScriptContext context) throws Exception
 	{
-		// Reads walletBalance (from CheckWalletBalance) and
-		// detailedBalanceRowsSnapshot (from CheckDetailedBalanceRow), writes
-		// walletBalanceBefore and detailedBalanceRowsBefore. Missing values are
-		// copied as "" rather than failing -- a legitimately empty "before" state
-		// (e.g. a category with zero existing rows) is still a valid snapshot.
-		String walletBalance = context.get("walletBalance");
-		context.put("walletBalanceBefore", walletBalance == null ? "" : walletBalance);
-
-		String detailedRows = context.get("detailedBalanceRowsSnapshot");
-		context.put("detailedBalanceRowsBefore", detailedRows == null ? "" : detailedRows);
+		copy(context, "walletBalance", "walletBalanceBefore");
+		copy(context, "balance_anytime_airtime", "airtimeBalanceBefore");
+		copy(context, "detailedBalanceRows_Data", "detailedBalanceRowsDataBefore");
+		copy(context, "detailedBalanceRows_Voice", "detailedBalanceRowsVoiceBefore");
+		copy(context, "detailedBalanceRows_SMS", "detailedBalanceRowsSmsBefore");
 
 		return SUCCESS();
+	}
+
+	/** Missing values are copied as "" rather than skipped -- a legitimately empty "before" state (e.g. zero existing rows) is still a valid snapshot. */
+	private void copy(IScriptContext context, String sourceKey, String destKey)
+	{
+		String value = context.get(sourceKey);
+		context.put(destKey, value == null ? "" : value);
 	}
 
 }
