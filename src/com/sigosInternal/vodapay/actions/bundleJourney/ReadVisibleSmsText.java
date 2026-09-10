@@ -36,22 +36,39 @@ public class ReadVisibleSmsText extends Action
 
 	/*** END GENERATED CODE ***/
 
-	// CONFIRMED 2026-09-06 on a real device (Huawei MGA-LX3, Android 10) via
-	// `adb shell pm list packages`: the stock Messages app here is com.android.mms
-	// (a Samsung device would instead be com.samsung.android.messaging -- this is
-	// genuinely device-dependent, so re-verify per real test device model).
-	private static final String MESSAGES_APP_PACKAGE = "com.android.mms";
+	// Genuinely device-dependent, confirmed two different ways so far:
+	// - Personal Huawei MGA-LX3 (Android 10), via `adb shell pm list packages`
+	//   2026-09-06: com.android.mms (bare package name was sufficient there --
+	//   this was explored with plain adb, before the real device farm's
+	//   startApplication() was found to need the full package/Activity form).
+	// - Real BLU device farm's Samsung Galaxy S23 [mcd 25011], confirmed
+	//   directly by the user 2026-09-10: Google's own Messages app, full
+	//   component "com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity"
+	//   -- NOT com.samsung.android.messaging as an earlier guess here assumed;
+	//   Samsung devices don't necessarily use Samsung's own Messages app.
+	// This project's real test device is the Samsung one, so that's what's used.
+	private static final String MESSAGES_APP_PACKAGE = "com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity";
 
 	/**
 	 * Opens the native Messages app and writes all visible text from the
 	 * conversation list screen (not a specific opened thread) to context as
-	 * smsVisibleText. CONFIRMED via a real `uiautomator dump` that this is
-	 * sufficient: the list's per-conversation "subject" text node carries the
-	 * full message body even though the on-screen display truncates it with
-	 * "..." -- e.g. a message visually cut off as "Y'ello! Welcome to MTN.
-	 * Your number is 06563..." came back in full in the accessibility tree. So
-	 * no extra tap into a thread is needed to read a code or confirmation
-	 * text, as long as it's within whatever the list currently shows.
+	 * smsVisibleText.
+	 *
+	 * CONFIRMED via a real `uiautomator dump` on `com.android.mms` (the
+	 * personal Huawei phone) that reading the LIST screen, without opening a
+	 * thread, is sufficient: the list's per-conversation "subject" text node
+	 * carries the full message body even though the on-screen display
+	 * truncates it with "..." -- e.g. a message visually cut off as "Y'ello!
+	 * Welcome to MTN. Your number is 06563..." came back in full in the
+	 * accessibility tree.
+	 *
+	 * UNCONFIRMED for Google's Messages app (com.google.android.apps.messaging
+	 * -- the real BLU device farm's actual Messages app, per the user). Its UI
+	 * implementation is different from com.android.mms and may genuinely
+	 * truncate the accessibility text too, not just the visual display -- if
+	 * OTP/SMS reading comes back empty or cut short on a real run, the fix is
+	 * to open the relevant conversation thread first (tap it) before reading
+	 * the screen, rather than assuming the list view alone is enough here too.
 	 */
 	@Override
 	protected ScriptReturn run(Device device, IScriptContext context) throws Exception
