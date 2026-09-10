@@ -38,7 +38,7 @@ public class CheckAllVodacomBalances extends Action
 
 	/*** END GENERATED CODE ***/
 
-	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay";
+	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay/za.co.vodacom.vodapay.onboarding.splash.SplashActivity";
 	private static final String MY_VODACOM_TAB_LABEL = "My Vodacom";
 	private static final String LINK_SIM_MARKER = "Link your Vodacom SIM";
 	private static final String VIEW_ALL_BALANCES_LABEL = "View all balances";

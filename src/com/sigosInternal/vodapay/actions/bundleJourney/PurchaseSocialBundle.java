@@ -71,7 +71,7 @@ public class PurchaseSocialBundle extends Action
 
 	/*** END GENERATED CODE ***/
 
-	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay";
+	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay/za.co.vodacom.vodapay.onboarding.splash.SplashActivity";
 	private static final String BUY_QUICK_ACTION_LABEL = "Buy";
 	private static final String BUY_FOR_ANOTHER_LABEL = "Buy for another";
 	private static final String CHOOSE_A_BUNDLE_LABEL = "Choose a bundle";

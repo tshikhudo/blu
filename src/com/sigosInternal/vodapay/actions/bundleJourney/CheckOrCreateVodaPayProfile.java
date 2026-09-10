@@ -46,7 +46,7 @@ public class CheckOrCreateVodaPayProfile extends Action
 
 	/*** END GENERATED CODE ***/
 
-	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay";
+	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay/za.co.vodacom.vodapay.onboarding.splash.SplashActivity";
 
 	// "Log in or create profile" screen (native, has real resource-ids, unlike the
 	// WebView-based shop screens).

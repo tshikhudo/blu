@@ -23,8 +23,17 @@ public class LaunchVodaPay extends Action
 
 	/*** END GENERATED CODE ***/
 
-	// CONFIRMED 2026-09-06 via `adb shell pm list packages` on a real device.
-	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay";
+	// Package name confirmed 2026-09-06 via `adb shell pm list packages` on a
+	// real device. The full package/Activity form (added 2026-09-10, per the
+	// user directly, matching the exact pattern from the team's own older
+	// script: "za.co.vodacom.android.app/com.myvodacomx.MainActivity") is
+	// what startApplication() actually needs -- the bare package name alone
+	// was very likely the real cause of repeated live "Error launching app in
+	// ADBCommandNexus.java" failures on the real device farm, since a bare
+	// package name apparently isn't enough for this SDK's startApplication()
+	// even though the personal-phone adb exploration this session was based
+	// on (`adb shell monkey -p <package> ...`) never needed an Activity name.
+	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay/za.co.vodacom.vodapay.onboarding.splash.SplashActivity";
 	// "My Vodacom" is part of the persistent native bottom nav bar, present on
 	// Home regardless of account balance state -- a reliable "Home has loaded"
 	// marker. "Log in or create profile" covers the logged-out landing screen

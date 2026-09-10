@@ -36,7 +36,7 @@ public class CheckWalletBalance extends Action
 
 	/*** END GENERATED CODE ***/
 
-	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay";
+	private static final String VODAPAY_PACKAGE = "za.co.vodacom.vodapay/za.co.vodacom.vodapay.onboarding.splash.SplashActivity";
 	private static final String WALLET_BALANCE_LABEL = "Your wallet balance";
 	private static final Pattern RAND_AMOUNT = Pattern.compile("R\\s?\\d+(?:[.,]\\d{2})?");
 	private static final long SCREEN_TRANSITION_TIMEOUT_MS = 15000;

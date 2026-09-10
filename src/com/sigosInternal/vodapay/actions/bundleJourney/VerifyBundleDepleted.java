@@ -41,7 +41,7 @@ public class VerifyBundleDepleted extends Action
 		device.serverWait(getCurrentContext(), 2000);
 
 		ObjectLevelApi api = device.getObjectLevelApi();
-		api.experimental.startApplication("za.co.vodacom.vodapay"); // PLACEHOLDER -- keep in sync with LaunchVodaPay
+		api.experimental.startApplication("za.co.vodacom.vodapay/za.co.vodacom.vodapay.onboarding.splash.SplashActivity"); // PLACEHOLDER -- keep in sync with LaunchVodaPay
 		device.serverWait(getCurrentContext(), 3000);
 
 		ObjectTree[] nav = api.findObjectsByText(MY_BUNDLES_NAV_LABEL);
